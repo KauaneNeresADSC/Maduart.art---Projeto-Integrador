@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio de Produtos</title>
+  <link rel="stylesheet" href="perfil.css">  <!-- Adicionando a ligação do arquivo CSS -->
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="#">Início</a></li>
+      <li><a href="#">Produtos</a></li>
+      <li><a href="#">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <!-- Cabeçalho -->
+  <header>
+    <div class="profile-container">
+      <div class="profile-pic-container">
+        <img id="profileImage" src="default-profile.jpg" alt="Imagem de Perfil" />
+        <button id="changeProfilePicButton" class="change-profile-pic-button">Alterar Foto</button>
+      </div>
+      <h1 id="displayUsername">Nome do Usuário</h1>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+      </div>
+      <button id="settingsButton" class="settings-button">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Seção Sobre -->
+  <section class="about">
+    <h2>Sobre</h2>
+    <textarea id="aboutText" placeholder="Conte-nos sobre você..."></textarea>
+  </section>
+
+  <!-- Botões de Upload e Configuração -->
+  <button id="uploadButton" class="upload-button">🖼️</button>
+
+  <!-- Seção de Portfólio -->
+  <section class="gallery">
+    <h2>Portfólio de Produtos</h2>
+    <div id="productList"></div>
+  </section>
+
+  <!-- Modal de Configuração -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Configurações de Perfil</h2>
+      <input type="file" id="profilePicInput" />
+      <input type="text" id="settingsUsername" placeholder="Nome de Usuário" />
+      <button onclick="saveProfileSettings()">Salvar</button>
+    </div>
+  </div>
+
+  <!-- Modal de Upload de Imagem -->
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Upload de Imagem</h2>
+      <input type="file" id="uploadInput" />
+      <input type="text" id="modalCaption" placeholder="Descrição do Produto" />
+      <input type="text" id="whatsappLink" placeholder="Link do WhatsApp" />
+      <img id="modalPreview" style="display:none;" />
+      <button id="addImageBtn">Adicionar ao Portfólio</button>
+    </div>
+  </div>
+
+  <!-- Modal de Imagem -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <img id="modalImage" src="" alt="Imagem Ampliada" />
+      <p id="modalCaptionText"></p>
+      <a id="modalLink" href="" target="_blank">Saber Mais / Comprar</a>
+    </div>
+  </div>
+
+  <script src="perfil.js"></script> <!-- Ligação do arquivo JavaScript -->
+</body>
+</html>
