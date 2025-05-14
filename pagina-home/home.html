@@ -1,0 +1,90 @@
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publicações</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Georgia:ital@1&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+    }
+  </style>
+</head>
+<body class="bg-[#9ca56a] min-h-screen flex flex-col items-center py-10 px-4">
+  <h1 class="text-white italic font-semibold text-4xl mb-10 select-none" style="font-style: italic; font-weight: 600;">
+    Publicações
+  </h1>
+  <div id="postsGrid" class="grid grid-cols-3 gap-x-8 gap-y-10 max-w-5xl w-full"></div>
+
+  <script>
+    // Example data simulating user profiles with posts
+    const profiles = [
+      {
+        username: "madiart_art",
+        posts: [
+          {
+            src: "https://storage.googleapis.com/a1aa/image/8383e47e-f67e-478b-fb12-3decb67d52ce.jpg",
+            alt: "Mulher com cabelo cacheado loiro usando bolsa branca com estampa colorida de flor caminhando em rua clara"
+          },
+          {
+            src: "https://storage.googleapis.com/a1aa/image/6b5c4d46-767a-4dec-1f70-814faaf7c940.jpg",
+            alt: "Bolsa branca com desenho preto de cidade segurada por uma mão em fundo cinza claro"
+          },
+          {
+            src: "https://storage.googleapis.com/a1aa/image/70fd53fa-5b2b-4151-4702-73f7ac09ccb6.jpg",
+            alt: "Pessoa com calça jeans e bolsa branca com texto 'bora ali' em jardim com plantas"
+          }
+        ]
+      },
+      {
+        username: "joanaart",
+        posts: [
+          {
+            src: "https://storage.googleapis.com/a1aa/image/8383e47e-f67e-478b-fb12-3decb67d52ce.jpg",
+            alt: "Mulher com cabelo cacheado loiro usando bolsa branca com estampa colorida de flor caminhando em rua clara"
+          },
+          {
+            src: "https://storage.googleapis.com/a1aa/image/6b5c4d46-767a-4dec-1f70-814faaf7c940.jpg",
+            alt: "Bolsa branca com desenho preto de cidade segurada por uma mão em fundo cinza claro"
+          },
+          {
+            src: "https://storage.googleapis.com/a1aa/image/70fd53fa-5b2b-4151-4702-73f7ac09ccb6.jpg",
+            alt: "Pessoa com calça jeans e bolsa branca com texto 'bora ali' em jardim com plantas"
+          }
+        ]
+      }
+    ];
+
+    // Flatten posts with username for display on home page
+    const postsGrid = document.getElementById("postsGrid");
+
+    profiles.forEach(profile => {
+      profile.posts.forEach(post => {
+        const postDiv = document.createElement("div");
+        postDiv.className = "space-y-1";
+
+        // Username above image, clickable to go to profile page
+        const usernameP = document.createElement("p");
+        usernameP.className = "text-[10px] text-white font-light italic select-none cursor-pointer hover:underline";
+        usernameP.textContent = profile.username;
+        usernameP.onclick = () => {
+          // Navigate to profile page with username as query param
+          window.location.href = `profile.html?user=${encodeURIComponent(profile.username)}`;
+        };
+
+        const img = document.createElement("img");
+        img.className = "w-full object-cover";
+        img.src = post.src;
+        img.alt = post.alt;
+        img.height = 150;
+        img.width = 150;
+
+        postDiv.appendChild(usernameP);
+        postDiv.appendChild(img);
+        postsGrid.appendChild(postDiv);
+      });
+    });
+  </script>
+</body>
+</html>

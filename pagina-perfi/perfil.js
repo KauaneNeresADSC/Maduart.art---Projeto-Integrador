@@ -1,9 +1,9 @@
-// Função para abrir o modal de configurações
+// Abrir modal de configurações
 document.getElementById('settingsButton').addEventListener('click', function() {
     document.getElementById('settingsModal').style.display = 'block';
 });
 
-// Função para salvar as configurações de perfil (imagem e nome)
+// Salvar configurações de perfil
 function saveProfileSettings() {
     const profilePicInput = document.getElementById('profilePicInput');
     const profileImage = document.getElementById('profileImage');
@@ -13,7 +13,8 @@ function saveProfileSettings() {
     if (profilePicInput.files && profilePicInput.files[0]) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            profileImage.src = e.target.result; // Atualiza a imagem de perfil
+            profileImage.src = e.target.result;
+            localStorage.setItem('profileImage', e.target.result); // salva imagem no localStorage
         };
         reader.readAsDataURL(profilePicInput.files[0]);
     }
@@ -21,19 +22,33 @@ function saveProfileSettings() {
     // Salvar nome de usuário
     const newUsername = settingsUsername.value.trim();
     if (newUsername) {
-        document.getElementById('displayUsername').textContent = newUsername; // Atualiza o nome de usuário
+        document.getElementById('displayUsername').textContent = newUsername;
+        localStorage.setItem('profileUsername', newUsername); // salva nome no localStorage
     }
 
-    // Fechar o modal após salvar
+    // Fechar modal
     document.getElementById('settingsModal').style.display = 'none';
 }
 
-// Função para abrir o modal de upload de imagem
+// Carregar configurações salvas
+window.addEventListener('DOMContentLoaded', () => {
+    const savedImage = localStorage.getItem('profileImage');
+    const savedUsername = localStorage.getItem('profileUsername');
+
+    if (savedImage) {
+        document.getElementById('profileImage').src = savedImage;
+    }
+    if (savedUsername) {
+        document.getElementById('displayUsername').textContent = savedUsername;
+    }
+});
+
+// Abrir modal de upload
 document.getElementById('uploadButton').addEventListener('click', function() {
     document.getElementById('uploadModal').style.display = 'block';
 });
 
-// Função para visualizar a imagem antes de adicionar ao portfólio
+// Visualizar imagem antes de adicionar
 document.getElementById('uploadInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
@@ -47,7 +62,7 @@ document.getElementById('uploadInput').addEventListener('change', function(event
     }
 });
 
-// Função para adicionar a imagem ao portfólio
+// Adicionar imagem ao portfólio e salvar no localStorage
 document.getElementById('addImageBtn').addEventListener('click', function() {
     const file = document.getElementById('uploadInput').files[0];
     const caption = document.getElementById('modalCaption').value.trim();
@@ -56,46 +71,64 @@ document.getElementById('addImageBtn').addEventListener('click', function() {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
+            const post = {
+                image: e.target.result,
+                caption: caption,
+                link: whatsappLink
+            };
+
+            // Adiciona visualmente no perfil
             const newProduct = document.createElement('div');
             newProduct.classList.add('product-item');
-            
+
             const image = document.createElement('img');
-            image.src = e.target.result;
-            image.alt = caption;
+            image.src = post.image;
+            image.alt = post.caption;
             image.classList.add('clickable-image');
             newProduct.appendChild(image);
 
             const description = document.createElement('p');
-            description.textContent = caption;
+            description.textContent = post.caption;
             newProduct.appendChild(description);
 
-            if (whatsappLink) {
+            if (post.link) {
                 const link = document.createElement('a');
-                link.href = whatsappLink;
+                link.href = post.link;
                 link.textContent = 'Ver no WhatsApp';
                 newProduct.appendChild(link);
             }
 
             document.getElementById('productList').appendChild(newProduct);
+
+            // Salva no LocalStorage para aparecer na home
+            const existingPosts = JSON.parse(localStorage.getItem('posts')) || [];
+            existingPosts.unshift(post);
+            localStorage.setItem('posts', JSON.stringify(existingPosts));
+
+            // Fecha o modal
+            document.getElementById('uploadModal').style.display = 'none';
+
+            // Limpa campos
+            document.getElementById('uploadInput').value = '';
+            document.getElementById('modalCaption').value = '';
+            document.getElementById('whatsappLink').value = '';
+            document.getElementById('modalPreview').style.display = 'none';
         };
         reader.readAsDataURL(file);
     }
-
-    // Fechar o modal após adicionar
-    document.getElementById('uploadModal').style.display = 'none';
 });
 
-// Função para visualizar a imagem com a legenda e o link do WhatsApp
+// Visualizar imagem ampliada
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('clickable-image')) {
         const imageSrc = e.target.src;
         const caption = e.target.alt;
-        const link = e.target.nextElementSibling ? e.target.nextElementSibling.href : null;
+        const link = e.target.nextElementSibling?.href || null;
 
-        // Exibir a imagem no modal
         document.getElementById('modalImage').src = imageSrc;
         document.getElementById('modalCaptionText').textContent = caption;
         const modalLink = document.getElementById('modalLink');
+
         if (link) {
             modalLink.style.display = 'block';
             modalLink.href = link;
@@ -103,12 +136,11 @@ document.addEventListener('click', function(e) {
             modalLink.style.display = 'none';
         }
 
-        // Exibir o modal de imagem
         document.getElementById('imageModal').style.display = 'block';
     }
 });
 
-// Fechar o modal de imagem
+// Fechar modal de imagem
 document.querySelector('.close-btn').addEventListener('click', function() {
     document.getElementById('imageModal').style.display = 'none';
 });
