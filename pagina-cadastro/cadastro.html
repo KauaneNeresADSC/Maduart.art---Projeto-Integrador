@@ -54,6 +54,9 @@
         .then((userCredential) => {
           alert("Conta criada com sucesso!");
           console.log("Usuário cadastrado:", userCredential.user);
+
+          window.location.href = "../pagina-perfil/perfil.html";
+
         })
         .catch((error) => {
           alert("Erro ao cadastrar: " + error.message);
