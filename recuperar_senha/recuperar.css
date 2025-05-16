@@ -1,5 +1,5 @@
+/* Estilização geral do corpo */
 body {
-    font-family: Arial, sans-serif;
     background-color: #A9B388; 
     padding: 0;
     display: flex;
@@ -7,52 +7,71 @@ body {
     align-items: center;
     height: 100vh;
     color: white;
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
+
+/* Container principal */
 .recuperar-container {
     padding: 30px;
     text-align: center;
     width: 400px;
 }
 
+/* Título */
 h1 {
     font-size: 55px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     color: #FFFFFF;
     white-space: nowrap;
     align-items: center;
-    font-family: 'Arial', sans-serif;
+    
 }
 
-form {
+/* Texto informativo */
+p {
+    padding-bottom: 30px; /* Ajuste para um melhor posicionamento */
+}
+
+/* Estilização do formulário */
+#recuperar-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+   
 }
 
+/* Agrupamento do Label e Input na mesma linha */
+.form-group {
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    gap: 10px; /* Espaço entre label e input */
+    width: 100%;
+    justify-content: center; /* Mantém centralizado */
+}
+
+/* Label ao lado do Input */
 label {
-    font-size: 18px;
-    margin-bottom: 5px;
-    text-align: left;
-    width: 100%;
+    font-size: 30px;
     color: #FFFFFF;
+    width: auto; /* Mantém ajustável */
+    white-space: nowrap; /* Impede quebra de linha */
+    margin-bottom: 70px;
+   
 }
 
+/* Input estilizado */
 input {
-    width: 100%;
+    flex: 1; /* Ajusta largura dinâmica */
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #FFFFFF;
     border-radius: 20px;
+    margin-bottom: 70px;
 }
 
-.forgot-password {
-    font-size: 14px;
-    color: #FFFFFF;
-    margin-bottom: 15px;
-    text-decoration: none;
-}
-
+/* Botão de enviar */
 button {
     background-color: #C4661F; 
     color: #FFFFFF;
@@ -63,7 +82,10 @@ button {
     font-size: 18px;
     font-weight: bold;
     width: 200px;
-    margin-top: 80px;
+    margin-top: 40px;
+      font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: italic; /* Ajuste no espaçamento */
 }
 
 button:hover {

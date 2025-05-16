@@ -1,6 +1,8 @@
 /* Estilo Geral */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: italic;
   background-color: #B99470;
   margin: 0;
   text-align: center;

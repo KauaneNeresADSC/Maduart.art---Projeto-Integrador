@@ -36,3 +36,17 @@ app.listen(port, () => {
 fetch('http://localhost:3000/api/mensagem')
     .then(response => response.json())
     .then(data => console.log(data.mensagem));
+
+
+    fetch("http://localhost:5000/upload", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        nome: "Maria",
+        imagem: "URL-da-imagem",
+        descricao: "Meu produto incrível!"
+    })
+})
+.then(response => response.json())
+.then(data => console.log("Dados salvos:", data))
+.catch(error => console.error("Erro ao salvar:", error));

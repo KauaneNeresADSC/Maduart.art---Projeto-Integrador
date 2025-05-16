@@ -1,5 +1,7 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: italic;
     background-color: #A9B388; 
     padding: 0;
     display: flex;
@@ -20,7 +22,9 @@ h1 {
     color: #FFFFFF;
     white-space: nowrap;
     align-items: center;
-    font-family: 'Arial', sans-serif;
+      font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: italic;
 }
 
 form {
@@ -63,6 +67,9 @@ button {
     font-weight: bold;
     width: 200px;
     margin-top: 80px;
+      font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: italic;
 }
 
 button:hover {
