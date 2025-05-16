@@ -283,7 +283,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("profileImage").src = "default-profile.jpg";
 
     // Restaurar nome de usuário
-    document.getElementById("displayUsername").textContent = "Nome do Usuário";
+    document.getElementById("displayUsername").textContent = "Seu Nome";
 
     // Restaurar fotos do portfólio
     document.querySelectorAll(".photo-cell").forEach((cell) => {

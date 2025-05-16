@@ -1,5 +1,7 @@
 body {
-    font-family: Arial, sans-serif;
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: italic;
     background-color: #FEFAE0;
     margin: 0;
     padding: 0;
