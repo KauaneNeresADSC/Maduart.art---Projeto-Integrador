@@ -327,4 +327,54 @@ header {
   font-size: inherit;
   font-family: inherit;
   width: auto;
+  color: #ffffff;
 }
+
+#socialLinksContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px; /* Espaço mínimo entre os elementos */
+    flex-wrap: nowrap; /* Mantém tudo em linha sem quebras */
+    
+}
+
+#socialLinksContainer a {
+    margin-right: 5px; /* Define um espaço fixo entre os links e o número */
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Ajuste para os inputs e links */
+#socialLinksContainer input,
+#socialLinksContainer a {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 2px 0; /* Reduzi o padding para minimizar altura */
+    color: #fff;
+    text-align: center;
+}
+
+/* Remove decoração dos links */
+#socialLinksContainer a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Botão "Salvar" também mais próximo */
+#saveSocialLinks {
+    background: #A9B388;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    padding: 6px 1px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 3px;
+}
+

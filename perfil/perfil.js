@@ -158,43 +158,10 @@ window.onclick = function(event) {
     }
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".photo-cell").forEach((cell, index) => {
-        // Carregar imagem salva no LocalStorage
-        const savedImage = localStorage.getItem(`photo-${index}`);
-        if (savedImage) {
-            cell.style.backgroundImage = `url('${savedImage}')`;
-            cell.style.backgroundSize = "cover";
-            cell.style.backgroundPosition = "center";
-        }
-
-        // Adicionar evento de clique para trocar imagem
-        cell.addEventListener("click", function () {
-            const fileInput = document.createElement("input");
-            fileInput.type = "file";
-            fileInput.accept = "image/*";
-
-            fileInput.addEventListener("change", function (event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        // Salvar imagem no LocalStorage
-                        localStorage.setItem(`photo-${index}`, e.target.result);
-                        cell.style.backgroundImage = `url('${e.target.result}')`;
-                        cell.style.backgroundSize = "cover";
-                        cell.style.backgroundPosition = "center";
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            fileInput.click();
-        });
-    });
-});
 
 
+
+// Adiciona o nome do usuario, salva e caso seja apagado volte ao padrao "nome de usuario"
 document.addEventListener("DOMContentLoaded", function () {
     const displayUsername = document.getElementById("displayUsername");
 
@@ -230,6 +197,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+// Adiciona imagens dentro dos quadrados
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".photo-cell").forEach((cell, index) => {
         const textElement = cell.querySelector(".photo-text");
@@ -243,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
             textElement.style.display = "none"; // Esconde o texto ao carregar imagem
         }
 
-        // Adicionar evento de clique para trocar imagem
+        // Adicionar evento de clique para cada quadrado
         cell.addEventListener("click", function () {
             const fileInput = document.createElement("input");
             fileInput.type = "file";
@@ -254,12 +223,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function (e) {
-                        // Salvar imagem no LocalStorage
-                        localStorage.setItem(`photo-${index}`, e.target.result);
+                        // Aplica a imagem imediatamente no quadrado clicado
                         cell.style.backgroundImage = `url('${e.target.result}')`;
                         cell.style.backgroundSize = "cover";
                         cell.style.backgroundPosition = "center";
-                        textElement.style.display = "none"; // Esconde o texto ao adicionar imagem
+
+                        // Esconde o texto imediatamente após a imagem ser aplicada
+                        textElement.style.display = "none";
+
+                        // Salva no LocalStorage para persistência
+                        localStorage.setItem(`photo-${index}`, e.target.result);
                     };
                     reader.readAsDataURL(file);
                 }
@@ -270,37 +243,133 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Adiciona imagem dentro do circulo de profileImage
 document.addEventListener("DOMContentLoaded", function () {
     const profileImage = document.getElementById("profileImage");
-    const profileHint = document.getElementById("profileHint");
 
-    // Carregar imagem salva no LocalStorage
-    const savedProfileImage = localStorage.getItem("profileImage");
-    if (savedProfileImage) {
-        profileImage.src = savedProfileImage;
-        profileHint.style.display = "none"; // Esconde o hint se já houver uma imagem
-    }
+    if (profileImage) {
+        profileImage.addEventListener("click", function () {
+            console.log("Imagem clicada!"); // Apenas para teste
+            const fileInput = document.createElement("input");
+            fileInput.type = "file";
+            fileInput.accept = "image/*";
 
-    // Clique para trocar a imagem
-    profileImage.addEventListener("click", function () {
-        const fileInput = document.createElement("input");
-        fileInput.type = "file";
-        fileInput.accept = "image/*";
+            fileInput.addEventListener("change", function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        profileImage.src = e.target.result;
+                        localStorage.setItem("profileImage", e.target.result);
+                        document.getElementById("profileHint").style.display = "none"; // Esconde o texto ao adicionar imagem
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
 
-        fileInput.addEventListener("change", function (event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    profileImage.src = e.target.result;
-                    localStorage.setItem("profileImage", e.target.result);
-                    profileHint.style.display = "none"; // Esconde o texto ao adicionar imagem
-                };
-                reader.readAsDataURL(file);
-            }
+            fileInput.click();
         });
+    } else {
+        console.error("Elemento profileImage não encontrado!");
+    }
+});
 
-        fileInput.click();
+// Limpar todos os dados armazenados no localStorage quando carregar a pagina novamente
+window.addEventListener("DOMContentLoaded", () => {
+    // Limpar todos os dados armazenados no localStorage
+    localStorage.clear();
+
+    // Restaurar imagem de perfil para a padrão
+    document.getElementById("profileImage").src = "default-profile.jpg";
+
+    // Restaurar nome de usuário
+    document.getElementById("displayUsername").textContent = "Nome do Usuário";
+
+    // Restaurar fotos do portfólio
+    document.querySelectorAll(".photo-cell").forEach((cell) => {
+        cell.style.backgroundImage = "none"; // Remove imagem
+        const textElement = cell.querySelector(".photo-text");
+        textElement.style.display = "block"; // Exibe o texto padrão
+    });
+
+    // Restaurar os campos de redes sociais
+    document.getElementById("facebookLink").value = "";
+    document.getElementById("instagramLink").value = "";
+    document.getElementById("cellNumber").value = "";
+});
+
+document.getElementById("saveSocialLinks").addEventListener("click", function () {
+    // Captura os inputs
+    const facebookLink = document.getElementById("facebookLink");
+    const instagramLink = document.getElementById("instagramLink");
+    const cellNumber = document.getElementById("cellNumber");
+
+    // Salva os valores no localStorage
+    localStorage.setItem("facebookLink", facebookLink.value);
+    localStorage.setItem("instagramLink", instagramLink.value);
+    localStorage.setItem("cellNumber", cellNumber.value);
+
+    // Desativa os inputs para exibição fixa
+    facebookLink.disabled = true;
+    instagramLink.disabled = true;
+    cellNumber.disabled = true;
+
+    // Esconde o botão após o salvamento
+    document.getElementById("saveSocialLinks").style.display = "none";
+});
+
+// Permitir edição ao clicar nos inputs
+document.querySelectorAll("#facebookLink, #instagramLink, #cellNumber").forEach(input => {
+    input.addEventListener("click", function () {
+        // Reativa os inputs para edição
+        this.disabled = false;
+
+        // Mostrar botão "Salvar" novamente
+        document.getElementById("saveSocialLinks").style.display = "block";
     });
 });
 
+// Carrega os dados salvos ao iniciar a página
+window.addEventListener("DOMContentLoaded", function () {
+    const savedFacebook = localStorage.getItem("facebookLink");
+    const savedInstagram = localStorage.getItem("instagramLink");
+    const savedCellNumber = localStorage.getItem("cellNumber");
+
+    // Preenche os campos se houver dados salvos
+    if (savedFacebook) document.getElementById("facebookLink").value = savedFacebook;
+    if (savedInstagram) document.getElementById("instagramLink").value = savedInstagram;
+    if (savedCellNumber) document.getElementById("cellNumber").value = savedCellNumber;
+
+    // Se já houver valores salvos, desativa os inputs e esconde o botão
+    if (savedFacebook || savedInstagram || savedCellNumber) {
+        document.getElementById("facebookLink").disabled = true;
+        document.getElementById("instagramLink").disabled = true;
+        document.getElementById("cellNumber").disabled = true;
+        document.getElementById("saveSocialLinks").style.display = "none";
+    }
+});
+
+document.getElementById("saveSocialLinks").addEventListener("click", function () {
+    const facebookLink = document.getElementById("facebookLink").value.trim();
+    const instagramLink = document.getElementById("instagramLink").value.trim();
+    const cellNumber = document.getElementById("cellNumber").value.trim();
+
+    // Salva os valores no localStorage
+    localStorage.setItem("facebookLink", facebookLink);
+    localStorage.setItem("instagramLink", instagramLink);
+    localStorage.setItem("cellNumber", cellNumber);
+
+    // Substituir inputs por links clicáveis
+    if (facebookLink) {
+        document.getElementById("facebookLink").outerHTML = `<a href="${facebookLink}" target="_blank">Facebook</a>`;
+    }
+    if (instagramLink) {
+        document.getElementById("instagramLink").outerHTML = `<a href="${instagramLink}" target="_blank">Instagram</a>`;
+    }
+    if (cellNumber) {
+        document.getElementById("cellNumber").disabled = true; // Apenas desativa, já que não é um link
+    }
+
+    // Esconde o botão após o salvamento
+    document.getElementById("saveSocialLinks").style.display = "none";
+});

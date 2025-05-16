@@ -1,48 +1,38 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors'); // Para evitar bloqueios de CORS
 const app = express();
 const port = 3000;
 
-// Servir todos os arquivos da pasta principal
+// Habilita CORS para permitir requisições do front-end
+app.use(cors());
+
+// Servir arquivos estáticos (HTML, CSS, JS)
 app.use(express.static(__dirname));
 
-
+// Rota inicial
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'boas_vindas', 'index.html'));
 });
 
-// Outras rotas para acessar diferentes páginas (adicione conforme necessário)
-app.get('/boas_vindas', (req, res) => {
-    res.sendFile(path.join(__dirname, 'boas_vindas', 'index.html'));
-});
-app.get('/entrar', (req, res) => {
-    res.sendFile(path.join(__dirname, 'entrar', 'index.html'));
-});
-
-app.get('/nova_senha', (req, res) => {
-    res.sendFile(path.join(__dirname, 'nova_senha', 'index.html'));
+// Definição de outras páginas
+const paginas = ['boas_vindas', 'entrar', 'nova_senha', 'cadastro', 'recuperar_senha', 'inserir_codigo', 'home', 'perfil'];
+paginas.forEach(pagina => {
+    app.get(`/${pagina}`, (req, res) => {
+        res.sendFile(path.join(__dirname, `${pagina}`, `${pagina}.html`));
+    });
 });
 
-app.get('/cadastro', (req, res) => {
-    res.sendFile(path.join(__dirname, 'cadastro', 'cadastro.html'));
+// Nova API para o back-end
+app.get('/api/mensagem', (req, res) => {
+    res.json({ mensagem: "Integração funcionando corretamente!" });
 });
 
-app.get('/recuperar_senha', (req, res) => {
-    res.sendFile(path.join(__dirname, 'recuperar_Senha', 'recuperar.html'));
-});
-
-app.get('/inserir_codigo', (req, res) => {
-    res.sendFile(path.join(__dirname, 'inserir_codigo', 'codigo.html'));
-});
-
-app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, 'home', 'home.html'));
-});
-
-app.get('/perfil', (req, res) => {
-    res.sendFile(path.join(__dirname, 'perfil', 'perfil.html'));
-});
-
+// Inicia o servidor
 app.listen(port, () => {
     console.log(`🚀 Servidor rodando em http://localhost:${port}`);
 });
+
+fetch('http://localhost:3000/api/mensagem')
+    .then(response => response.json())
+    .then(data => console.log(data.mensagem));
