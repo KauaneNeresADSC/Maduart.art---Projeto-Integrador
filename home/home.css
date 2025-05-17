@@ -1,87 +1,33 @@
-/* Estilo Geral */
+/* Fonte padrão */
 body {
   font-family: "PT Serif", serif;
   font-weight: 400;
   font-style: italic;
-  background-color: #B99470;
   margin: 0;
   text-align: center;
 }
 
-/* Navbar do Cabeçalho */
-.navbar {
-  background-color: #A9B388;
-  padding: 10px 0;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 0;
-  padding: 0;
-}
-
-.navbar ul li {
-  display: inline;
-}
-
-.navbar ul li a {
-  color: #ffefb4;
-  text-decoration: none;
+/* Links empilhados no header */
+header nav a {
+  display: block;
+  text-align: right;
   font-size: 18px;
+  color: #ffefb4;
   font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-/* Seção de Galeria */
-.gallery {
-  max-width: 800px;
-  margin: 30px auto;
-  text-align: center;
-  padding: 20px;
-  border-radius: 10px;
+header nav a:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
-.gallery h2 {
-  color: #fff;
-  margin-bottom: 20px;
-}
-
-#galleryContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.product-item {
-  position: relative;
-  width: 220px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  text-align: center;
-}
-
+/* Galeria opcional */
 .product-item img {
   width: 220px;
   height: 220px;
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
-}
-
-.product-item p {
-  font-size: 14px;
-  margin: 10px 0;
-}
-
-.product-item a {
-  display: block;
-  margin-top: 5px;
-  color: #2e7d32;
-  text-decoration: none;
-  font-weight: bold;
 }
