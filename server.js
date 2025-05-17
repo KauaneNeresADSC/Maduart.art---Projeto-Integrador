@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // Definição de outras páginas
-const paginas = ['boas_vindas', 'entrar', 'nova_senha', 'cadastro', 'recuperar_senha', 'inserir_codigo', 'home', 'perfil'];
+const paginas = ['boas_vindas', 'entrar', 'nova_senha', 'cadastro', 'recuperar_senha', 'inserir_codigo', 'home', 'perfil','perfil_criar'];
 paginas.forEach(pagina => {
     app.get(`/${pagina}`, (req, res) => {
         res.sendFile(path.join(__dirname, `${pagina}`, `${pagina}.html`));
@@ -50,3 +50,4 @@ fetch('http://localhost:3000/api/mensagem')
 .then(response => response.json())
 .then(data => console.log("Dados salvos:", data))
 .catch(error => console.error("Erro ao salvar:", error));
+

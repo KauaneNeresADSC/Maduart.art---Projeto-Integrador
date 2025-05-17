@@ -1,35 +1,53 @@
-// Função para exibir as imagens na galeria
-function displayImages() {
-    const galleryContainer = document.getElementById('galleryContainer');
-    galleryContainer.innerHTML = '';  // limpa conteúdo antes de adicionar
+document.addEventListener("DOMContentLoaded", function () {
+    const carousel = document.querySelector(".carousel");
+    const profileUsername = localStorage.getItem("profileUsername") || "Usuário Desconhecido";
+    const images = JSON.parse(localStorage.getItem("userImages")) || [];
 
-    const existingPosts = JSON.parse(localStorage.getItem('posts')) || [];
+    carousel.innerHTML = ""; // Limpa antes de adicionar conteúdo
 
-    existingPosts.forEach(post => {
-        const imageDiv = document.createElement('div');
-        imageDiv.classList.add('product-item');
+    if (images.length === 0) {
+        carousel.innerHTML = "<p class='text-white text-center'>Nenhuma imagem encontrada.</p>";
+    } else {
+        images.forEach(imageSrc => {
+            if (imageSrc) { // Evita imagens vazias
+                const slideDiv = document.createElement("div");
+                slideDiv.className = "carousel-slide";
 
-        const image = document.createElement('img');
-        image.src = post.image;
-        image.alt = post.caption;
-        image.classList.add('clickable-image');
-        imageDiv.appendChild(image);
+                const usernameLabel = document.createElement("p");
+                usernameLabel.className = "post-username";
+                usernameLabel.textContent = profileUsername;
+                slideDiv.appendChild(usernameLabel);
 
-        const description = document.createElement('p');
-        description.textContent = post.caption;
-        imageDiv.appendChild(description);
+                const img = document.createElement("img");
+                img.className = "post-img";
+                img.src = imageSrc;
+                img.alt = "Publicação";
+                slideDiv.appendChild(img);
 
-        if (post.link) {
-            const link = document.createElement('a');
-            link.href = post.link;
-            link.textContent = 'Ver no WhatsApp';
-            link.target = "_blank";
-            imageDiv.appendChild(link);
-        }
+                carousel.appendChild(slideDiv);
+            }
+        });
+    }
 
-        galleryContainer.appendChild(imageDiv);
+    // Carrossel - Navegação
+    let index = 0;
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function updateCarousel() {
+        const slideWidth = document.querySelector(".carousel-slide").clientWidth;
+        carousel.style.transform = `translateX(${-index * slideWidth}px)`;
+    }
+
+    nextBtn.addEventListener("click", function () {
+        index = (index + 1) % images.length; // Loop infinito
+        updateCarousel();
     });
-}
 
-// Carregar imagens ao iniciar a página
-window.addEventListener('DOMContentLoaded', displayImages);
+    prevBtn.addEventListener("click", function () {
+        index = (index - 1 + images.length) % images.length; // Voltar para última imagem ao clicar em "Anterior"
+        updateCarousel();
+    });
+
+    window.addEventListener("resize", updateCarousel);
+});

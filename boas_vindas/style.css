@@ -27,12 +27,14 @@ p {
     color: #000;
     margin: 20px 0;
     text-align: left;
+    margin-bottom: 50px;
 }
 
 .buttons {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Alinha à esquerda */
     gap: 20px;
+    width: 100%;
 }
 
 button {
@@ -43,6 +45,10 @@ button {
     cursor: pointer;
     border-radius: 20px;
     color: #FFFFFF;
+    align-items: left;
+      font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
 button:hover {
@@ -57,4 +63,11 @@ button:hover {
 .login {
     background-color: #A9B388;
     color: #FFFFFF;
+}
+
+.custom-button {
+    margin-left: 250px;
+    border-radius: 50%;
+    font-size: 12px;
+    
 }

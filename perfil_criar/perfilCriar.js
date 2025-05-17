@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("aboutText", aboutText.value.trim());
 
         alert("Informações salvas com sucesso!");
-        window.location.href = "../perfil/perfil.html;"// Agora direciona corretamente
+        window.location.href = "../home/home.html"// Agora direciona corretamente
     });
 
     // Restaurar informações ao carregar a página
@@ -98,4 +98,47 @@ document.addEventListener("DOMContentLoaded", function () {
     cellNumber.value = localStorage.getItem("cellNumber") || "";
     aboutText.value = localStorage.getItem("aboutText") || "";
     profileImage.src = localStorage.getItem("profileImage") || "";
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const cadastrarButton = document.getElementById("Cadastrar");
+    const displayUsername = document.getElementById("displayUsername");
+    const photoCells = document.querySelectorAll(".photo-cell");
+
+    // Restaurar nome ao carregar a página
+    displayUsername.textContent = localStorage.getItem("profileUsername") || "Seu Nome";
+
+    // Salvar imagens e nome ao clicar no botão "Cadastrar"
+    cadastrarButton.addEventListener("click", function () {
+        localStorage.setItem("profileUsername", displayUsername.textContent.trim());
+
+        let imageList = [];
+        photoCells.forEach(cell => {
+            if (cell.style.backgroundImage) {
+                // Corrige a extração da URL da imagem
+                const imageUrl = cell.style.backgroundImage.replace('url("', '').replace('")', '');
+                imageList.push(imageUrl);
+            }
+        });
+
+        localStorage.setItem("userImages", JSON.stringify(imageList));
+
+        alert("Cadastro concluído! Você será redirecionado para a Home.");
+        window.location.href = "../home/home.html"; // Redireciona para a Home
+    });
+
+    // Restaurar imagens ao carregar a página
+    function updateGallery() {
+        const savedImages = JSON.parse(localStorage.getItem("userImages")) || [];
+        photoCells.forEach((cell, index) => {
+            if (savedImages[index]) {
+                cell.style.backgroundImage = `url('${savedImages[index]}')`;
+                cell.style.backgroundSize = "cover";
+                cell.style.backgroundPosition = "center";
+                cell.querySelector(".photo-text").style.display = "none";
+            }
+        });
+    }
+
+    updateGallery();
 });

@@ -1,10 +1,19 @@
+
+
 /* Fonte padrão */
 body {
   font-family: "PT Serif", serif;
-  font-weight: 400;
+  font-weight: 700;
   font-style: italic;
   margin: 0;
   text-align: center;
+}
+
+.publicacaoes {
+font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: italic;
+
 }
 
 /* Links empilhados no header */
@@ -27,7 +36,61 @@ header nav a:hover {
 .product-item img {
   width: 220px;
   height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
   cursor: pointer;
+    border: none;
+    box-shadow: none; /* Se houver sombras que pareçam bordas */
+}
+
+
+
+#carrossel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.user-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-row img {
+    width: 150px;
+    height: 150px;
+}
+
+
+.post-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.post-username {
+    font-family: "PT Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.post-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.titulo {
+    font-family: "PT Serif", serif !important;
+    font-weight: 700 !important;
+    font-style: italic !important;
 }
