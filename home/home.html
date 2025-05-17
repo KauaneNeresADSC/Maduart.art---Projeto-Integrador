@@ -1,97 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Publicações</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Publicações</title>
+
+    <!-- Tailwind + CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonte PT Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-[#9ca56a] min-h-screen flex flex-col items-center py-10 px-4 font-pt-serif">
-  <!-- Header com menu fixo -->
-<header class="fixed top-0 right-0 p-4 z-50">
-  <nav class="bg-[#A9B388] rounded-xl shadow-lg px-6 py-4 flex flex-col items-center gap-2 w-28">
-   
-    <a href="../perfil/perfil.html" class="text-[#ffefb4] font-semibold text-lg hover:text-white transition text-center w-full">Perfil</a>
-  </nav>
-</header>
-    </nav>
-  </header>
+  
+    <!-- Header com menu fixo -->
+    <header class="fixed top-0 right-0 p-4 z-50">
+        <nav class="bg-[#A9B388] rounded-xl shadow-lg px-6 py-4 flex flex-col items-center gap-2 w-28">
+            <a href="../perfil/perfil.html" class="text-[#ffefb4] hover:text-white transition text-center w-full font-pt-serif">Perfil</a>
+        </nav>
+    </header>
 
-  <h1 class="text-white italic font-semibold text-4xl mb-10 mt-4 select-none">
-    Publicações
-  </h1>
+    <!-- Título estilizado corretamente -->
+    <h1 class="titulo">
+        Publicações
+    </h1>
 
-  <div id="postsGrid" class="grid grid-cols-3 gap-x-8 gap-y-10 max-w-5xl w-full"></div>
+    <!-- Container do carrossel -->
+    <div class="carousel-container">
+        <button id="prevBtn" class="carousel-btn">❮</button>
+        <div class="carousel">
+            <!-- Imagens serão adicionadas dinamicamente pelo JS -->
+        </div>
+        <button id="nextBtn" class="carousel-btn">❯</button>
+    </div>
 
-  <script>
-    const profiles = [
-      {
-        username: "madiart_art",
-        posts: [
-          {
-            src: "https://storage.googleapis.com/a1aa/image/8383e47e-f67e-478b-fb12-3decb67d52ce.jpg",
-            alt: "Mulher com cabelo cacheado loiro usando bolsa branca com estampa colorida de flor caminhando em rua clara"
-          },
-          {
-            src: "https://storage.googleapis.com/a1aa/image/6b5c4d46-767a-4dec-1f70-814faaf7c940.jpg",
-            alt: "Bolsa branca com desenho preto de cidade segurada por uma mão em fundo cinza claro"
-          },
-          {
-            src: "https://storage.googleapis.com/a1aa/image/70fd53fa-5b2b-4151-4702-73f7ac09ccb6.jpg",
-            alt: "Pessoa com calça jeans e bolsa branca com texto 'bora ali' em jardim com plantas"
-          }
-        ]
-      },
-      {
-        username: "joanaart",
-        posts: [
-          {
-            src: "https://storage.googleapis.com/a1aa/image/8383e47e-f67e-478b-fb12-3decb67d52ce.jpg",
-            alt: "Mulher com cabelo cacheado loiro usando bolsa branca com estampa colorida de flor caminhando em rua clara"
-          },
-          {
-            src: "https://storage.googleapis.com/a1aa/image/6b5c4d46-767a-4dec-1f70-814faaf7c940.jpg",
-            alt: "Bolsa branca com desenho preto de cidade segurada por uma mão em fundo cinza claro"
-          },
-          {
-            src: "https://storage.googleapis.com/a1aa/image/70fd53fa-5b2b-4151-4702-73f7ac09ccb6.jpg",
-            alt: "Pessoa com calça jeans e bolsa branca com texto 'bora ali' em jardim com plantas"
-          }
-        ]
-      }
-    ];
+    <!-- Importando o script -->
+    <script src="home.js"></script>
 
-    const postsGrid = document.getElementById("postsGrid");
-
-    profiles.forEach(profile => {
-      profile.posts.forEach(post => {
-        const postDiv = document.createElement("div");
-        postDiv.className = "space-y-1";
-
-        const usernameP = document.createElement("p");
-        usernameP.className = "text-[10px] text-white font-light italic select-none cursor-pointer hover:underline";
-        usernameP.textContent = profile.username;
-        usernameP.onclick = () => {
-          window.location.href = `profile.html?user=${encodeURIComponent(profile.username)}`;
-        };
-
-        const img = document.createElement("img");
-        img.className = "w-full object-cover";
-        img.src = post.src;
-        img.alt = post.alt;
-        img.height = 150;
-        img.width = 150;
-
-        postDiv.appendChild(usernameP);
-        postDiv.appendChild(img);
-        postsGrid.appendChild(postDiv);
-      });
-    });
-  </script>
 </body>
 </html>

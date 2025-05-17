@@ -30,7 +30,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
         .then((userCredential) => {
           alert("Conta criada com sucesso!");
           console.log("Usuário cadastrado:", userCredential.user);
-           window.location.href = "../perfil/perfil.html";
+           window.location.href = "../perfil_criar/perfilCriar.html";
         })
         .catch((error) => {
           alert("Erro ao cadastrar: " + error.message);
