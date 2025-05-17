@@ -1,0 +1,226 @@
+/* Estilo Geral */
+body {
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: italic;
+  background-color: #A9B388;
+  margin: 0;
+  text-align: center;
+}
+
+/* Botão "Home" */
+.home-arrow {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #A9B388;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.home-arrow:hover {
+  background-color: #8F9F63;
+  transform: scale(1.05);
+}
+
+/* Cabeçalho e Perfil */
+header {
+  padding: 20px 0 30px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-pic-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  background-color: #D9D9D9;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile-pic-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ajuste correto para centralizar o texto dentro do círculo */
+.profile-hint {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* Nome do Usuário */
+.editable {
+  font-size: 24px;
+  color: #FFFFFF;
+  margin: 0;
+  outline: none;
+  border: none;
+  background: transparent;
+  font-weight: bold;
+}
+
+/* Seção Sobre */
+.about {
+  background-color: #D9D9D9;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+.about textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 16px;
+  resize: none;
+  background-color: #D9D9D9;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "PT Serif", serif;
+}
+
+/* Botão "Adicionar Imagem" */
+.upload-button {
+  display: block;
+  margin: 20px auto;
+  background-color: #A9B388;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.upload-button:hover {
+  background-color: #8F9F63;
+}
+
+/* Seção de Galeria */
+.gallery {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.photo-table {
+  width: 100%;
+  border-spacing: 40px 40px;
+}
+
+.photo-cell {
+  width: 350px;
+  height: 200px;
+  background-color: #D9D9D9;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  background-size: cover;
+  background-position: center;
+}
+
+.photo-text {
+  color: #555;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+.close-btn {
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+/* Estilo para imagens adicionadas */
+.clickable-image {
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Ajuste para redes sociais */
+#socialLinksContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+#socialLinksContainer input,
+#socialLinksContainer a {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 2px 0;
+  color: #d9d9d9;
+  text-align: center;
+}
+
+#saveSocialLinks {
+  background: #d9d9d9;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: 3px;
+}
+
+
+

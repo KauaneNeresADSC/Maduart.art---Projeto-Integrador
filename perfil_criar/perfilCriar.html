@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil</title>
+  <link rel="stylesheet" href="perfilCriar.css" />
+</head>
+<body>
+
+  <a href="../home/home.html" class="home-arrow">Home</a>
+
+  <header>
+    <div class="profile-container">
+      <div class="profile-pic-container" id="profilePicContainer">
+        <span id="profileHint" class="profile-hint">Clique para adicionar uma imagem</span>
+        <img id="profileImage" src="default-profile.jpg" alt="" />
+      </div>
+      
+    </div>
+
+    <span id="displayUsername" class="editable" contenteditable="true">Seu Nome</span>
+
+    <div id="socialLinksContainer">
+      <input type="text" id="facebookLink" placeholder="Link do Facebook" />
+      <input type="text" id="instagramLink" placeholder="Link do Instagram" />
+      <input type="text" id="cellNumber" placeholder="Número de Celular" />
+      <button id="saveSocialLinks">Salvar</button>
+    </div>
+  </header>
+
+  <section class="about">
+    <textarea id="aboutText" placeholder="Texto sobre você..."></textarea>
+  </section>
+<input type="file" id="uploadInput" accept="image/*" style="display: none;" />
+      <button id="uploadButton">Adicionar fotos</button>
+  <section class="gallery">
+    <table class="photo-table">
+      <tr>
+        <td class="photo-cell" id="photoCell1">
+          <span class="photo-text">Clique para adicionar uma imagem</span>
+        </td>
+        <td class="photo-cell" id="photoCell2">
+          <span class="photo-text">Clique para adicionar uma imagem</span>
+        </td>
+        <td class="photo-cell" id="photoCell3">
+          <span class="photo-text">Clique para adicionar uma imagem</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="photo-cell" id="photoCell4">
+          <span class="photo-text">Clique para adicionar uma imagem</span>
+        </td>
+        <td class="photo-cell" id="photoCell5">
+          <span class="photo-text">Clique para adicionar uma imagem</span>
+        </td>
+        <td class="photo-cell" id="photoCell6">
+          <span class="photo-text">Clique para adicionar uma imagem</span>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Upload de Imagem</h2>
+      <input type="file" id="uploadInputModal" />
+      <input type="text" id="modalCaption" placeholder="Descrição da Imagem" />
+      <input type="text" id="whatsappLink" placeholder="Link do WhatsApp" />
+      <button id="addImageBtn">Adicionar ao Perfil</button>
+    </div>
+    
+  </div>
+<input type="file" id="uploadInput" accept="image/*" style="display: none;" />
+      <button id="Cadastrar">Cadastrar</button>
+  <script src="perfilCriar.js"></script>
+
+  <a href="../perfil/perfil.html"></a>
+</body>
+</html>
